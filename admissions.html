@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about the admissions process at Benhill College and contact the school for current application requirements.">
+    <title>Admissions | Benhill College</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+     <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="script.js" defer></script>
+
+    <!-- Page-specific styles for the Admissions page -->
+    <style>
+        .page-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 86px 0 82px;
+            color: var(--color-white);
+            background:
+                linear-gradient(105deg, rgba(7, 25, 49, .97), rgba(11, 31, 58, .86)),
+                url("images/hero-school.jpg") center / cover;
+        }
+        .page-hero::after {
+            position: absolute;
+            right: -90px;
+            bottom: -180px;
+            width: 390px;
+            height: 390px;
+            border: 1px solid rgba(232, 121, 172, .28);
+            border-radius: 50%;
+            content: "";
+            box-shadow: 0 0 0 45px rgba(232, 121, 172, .035),
+                        0 0 0 90px rgba(232, 121, 172, .025);
+            pointer-events: none;
+        }
+        .page-hero-content { position: relative; z-index: 1; max-width: 720px; }
+        .page-hero .section-eyebrow { color: #F7B8D5; }
+        .page-hero h1 {
+            margin-bottom: 20px;
+            font-family: var(--font-heading);
+            font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+        .page-hero h1 span { color: var(--color-pink); font-style: italic; }
+        .page-hero p {
+            max-width: 590px;
+            margin-bottom: 28px;
+            color: rgba(255,255,255,.84);
+            line-height: 1.9;
+        }
+        .breadcrumb { margin-bottom: 18px; color: rgba(255,255,255,.72); font-size: .82rem; }
+        .breadcrumb a { color: #F7B8D5; }
+        .admissions-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr .85fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .admissions-note {
+            padding: 28px;
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-pink);
+            border-radius: var(--radius-medium);
+            background: var(--color-background);
+        }
+        .admissions-note h2 {
+            margin-bottom: 10px;
+            color: var(--color-navy);
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+        }
+        .admissions-note p { color: var(--color-text-light); font-size: .9rem; line-height: 1.85; }
+        .admissions-steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 38px;
+        }
+        .admission-step {
+            padding: 28px 24px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-medium);
+            background: var(--color-white);
+            box-shadow: 0 5px 22px rgba(11,31,58,.035);
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            color: var(--color-pink);
+            background: var(--color-pink-light);
+            font-weight: 700;
+        }
+        .admission-step h3 { margin-bottom: 9px; color: var(--color-navy); font-size: 1.05rem; }
+        .admission-step p { color: var(--color-text-light); font-size: .88rem; line-height: 1.8; }
+        .requirements-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 55px;
+            align-items: start;
+        }
+        .requirements-panel {
+            padding: 30px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-medium);
+            background: var(--color-white);
+        }
+        .requirements-panel h3 {
+            margin-bottom: 18px;
+            color: var(--color-navy);
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+        }
+        .requirements-list { display: grid; gap: 14px; }
+        .requirements-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--color-text-light);
+            font-size: .9rem;
+            line-height: 1.75;
+        }
+        .requirements-list li::before {
+            content: "✓";
+            display: inline-flex;
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+            border-radius: 50%;
+            color: var(--color-navy);
+            background: var(--color-pink-light);
+            font-size: .8rem;
+            font-weight: 700;
+        }
+        .notice-text { margin-top: 18px; color: var(--color-text-light); font-size: .8rem; line-height: 1.7; }
+        .admissions-cta {
+            padding: 65px 0;
+            color: var(--color-white);
+            background: var(--color-navy);
+        }
+        .admissions-cta-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .admissions-cta h2 {
+            max-width: 650px;
+            margin-bottom: 12px;
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3vw, 2.7rem);
+            line-height: 1.25;
+        }
+        .admissions-cta p { max-width: 650px; color: rgba(255,255,255,.76); font-size: .92rem; }
+        .admissions-cta .btn { flex-shrink: 0; }
+        @media (max-width: 900px) {
+            .admissions-intro-grid, .requirements-layout { grid-template-columns: 1fr; gap: 30px; }
+            .admissions-steps { grid-template-columns: 1fr 1fr; }
+            .admissions-cta-inner { align-items: flex-start; flex-direction: column; }
+        }
+        @media (max-width: 600px) {
+            .page-hero { padding: 65px 0 60px; }
+            .admissions-steps { grid-template-columns: 1fr; }
+            .admission-step, .requirements-panel, .admissions-note { padding: 22px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Shared website header -->
+    <header class="site-header" id="top">
+        <div class="container header-container">
+            <a class="school-logo" href="index.html" aria-label="Benhill College homepage">
+                <img src="images/school-logo.png" alt="Benhill College logo">
+                <span class="logo-text">
+                    <strong>BENHILL</strong>
+                    <span>COLLEGE</span>
+                </span>
+            </a>
+
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu"
+                    aria-controls="primary-navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#academics">Academics</a></li>
+                    <li><a class="nav-link active" href="admissions.html" aria-current="page">Admissions</a></li>
+                    <li><a class="nav-link" href="news.html">News &amp; Events</a></li>
+                    <li><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a class="btn btn-primary header-cta" href="contact.html">Enquire Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Admissions page introduction -->
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="breadcrumb"><a href="index.html">Home</a> &nbsp; / &nbsp; Admissions</div>
+                <p class="section-eyebrow">Your next chapter starts here</p>
+                <h1>Begin your journey at <span>Benhill College.</span></h1>
+                <p>
+                    Choosing a school is an important decision for every family.
+                    Explore the admission process below, then contact the school
+                    to confirm current entry requirements, available places and application dates.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#admission-process">Explore the process <span aria-hidden="true">→</span></a>
+                    <a class="btn btn-outline" href="contact.html">Contact the school</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Welcome and key note -->
+        <section class="section-padding">
+            <div class="container admissions-intro-grid">
+                <div>
+                    <p class="section-eyebrow">Admissions at Benhill</p>
+                    <h2 class="section-title">A thoughtful start to a <span>bright future.</span></h2>
+                    <p class="section-description">
+                        We understand that every child's educational journey is unique.
+                        Our admissions team can guide families through the next steps and
+                        explain the information needed for an application.
+                    </p>
+                    <p class="section-description">
+                        Please contact the school directly for the latest admissions policy,
+                        grade availability, fees and application deadlines.
+                    </p>
+                </div>
+                <aside class="admissions-note">
+                    <h2>Planning an application?</h2>
+                    <p>
+                        Before preparing documents, speak with the school to confirm the
+                        correct application procedure for the grade you are interested in.
+                        This page provides a general guide and is not a substitute for the
+                        college's official admissions instructions.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- General application steps -->
+        <section class="section-padding" id="admission-process" style="background: var(--color-background);">
+            <div class="container">
+                <p class="section-eyebrow">How to get started</p>
+                <h2 class="section-title">The admission <span>process.</span></h2>
+                <p class="section-description">
+                    Use these general steps as a starting point. The school will confirm
+                    the exact process and requirements for your application.
+                </p>
+
+                <div class="admissions-steps">
+                    <article class="admission-step">
+                        <span class="step-number">01</span>
+                        <h3>Make an enquiry</h3>
+                        <p>Contact the college to ask about the grade, entry requirements, available places and relevant dates.</p>
+                    </article>
+                    <article class="admission-step">
+                        <span class="step-number">02</span>
+                        <h3>Prepare your details</h3>
+                        <p>Ask the admissions team which application form and supporting documents are required before preparing them.</p>
+                    </article>
+                    <article class="admission-step">
+                        <span class="step-number">03</span>
+                        <h3>Follow school guidance</h3>
+                        <p>Submit the requested information using the school's official procedure and follow any further instructions provided.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents and information -->
+        <section class="section-padding">
+            <div class="container requirements-layout">
+                <div>
+                    <p class="section-eyebrow">Be prepared</p>
+                    <h2 class="section-title">Information to <span>ask about.</span></h2>
+                    <p class="section-description">
+                        Requirements can differ by grade and admission year. Confirm the
+                        current list with the college before submitting personal documents.
+                    </p>
+                    <a class="btn btn-primary" href="contact.html">Ask an admissions question <span aria-hidden="true">→</span></a>
+                </div>
+
+                <div class="requirements-panel">
+                    <h3>Check with the admissions office</h3>
+                    <ul class="requirements-list">
+                        <li>Official application form and submission method</li>
+                        <li>Birth certificate or other identity documentation, if required</li>
+                        <li>Previous school reports or transfer documents, if applicable</li>
+                        <li>Photographs or other supporting documents, if requested</li>
+                        <li>Any interview, assessment or meeting requirements</li>
+                        <li>Current fees, payment arrangements and important dates</li>
+                    </ul>
+                    <p class="notice-text">
+                        This is a general checklist only, not a confirmed list of Benhill College's
+                        requirements. Please verify every item with the school.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact call to action -->
+        <section class="admissions-cta">
+            <div class="container admissions-cta-inner">
+                <div>
+                    <p class="section-eyebrow">Need more information?</p>
+                    <h2>Let’s help you take the next step.</h2>
+                    <p>Contact the college for accurate information about applications, entry requirements and current availability.</p>
+                </div>
+                <a class="btn btn-primary" href="contact.html">Contact Benhill College <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer" id="contact">
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+                    <a href="index.html" class="school-logo footer-logo">
+                        <img src="images/school-logo.png" alt="">
+                        <span class="logo-text">
+                            <strong>Benhill</strong>
+                            <span>College</span>
+                        </span>
+                    </a>
+
+                    <p class="footer-tagline">
+                        Knowledge <span>•</span> Excellence  <span>•</span> Future
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#academics">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="index.html#student-life">Student Life</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Branches</h3>
+                    <ul>
+                        <li><a href="#branches">Gampola Branch</a></li>
+                        <li><a href="#branches">Gelioya Branch</a></li>
+                        <li><a href="#branches">Welamboda Branch</a></li>
+                        <li><a href="#branches">Hemmathagama Branch</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column footer-contact">
+                    <h3>Contact Us</h3>
+                    <address>
+                        <p><a href="tel:+9411112345678">+94 11 234 5678</a></p>
+                        <p><a href="mailto:info@example.com">info@example.com</a></p>
+                        <p>School address, Sri Lanka</p>
+                    </address>
+                </div>
+
+<div class="footer-column footer-social">
+    <h3>Follow Us</h3>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            <span>Facebook</span>
+        </a>
+
+        <a href="https://www.instagram.com/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+        </a>
+
+        <a href="https://www.youtube.com/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            <span>YouTube</span>
+        </a>
+    </div>
+</div>
+
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="current-year">2026</span>
+                    Benhill College . All rights reserved.
+                </p>
+
+                <a href="index.html" class="back-to-top">Back to top ↑</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        // Keeps the copyright year current on this page.
+        const yearElement = document.getElementById("current-year");
+        if (yearElement) yearElement.textContent = new Date().getFullYear();
+
+        // Fallback mobile menu behavior. If script.js already manages the menu,
+        // remove this inline block to avoid duplicate event listeners.
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#primary-navigation");
+        if (menuToggle && navigation && !menuToggle.dataset.menuInitialized) {
+            menuToggle.dataset.menuInitialized = "true";
+            menuToggle.addEventListener("click", () => {
+                const isOpen = navigation.classList.toggle("is-open");
+                menuToggle.setAttribute("aria-expanded", String(isOpen));
+                menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+            });
+            navigation.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navigation.classList.remove("is-open");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Open navigation menu");
+                });
+            });
+        }
+    </script>
+</body>
+</html>
